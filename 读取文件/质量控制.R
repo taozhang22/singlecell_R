@@ -1,5 +1,7 @@
 # 质量控制图
 root <- sqrt(length(unique(seurat$Sample)))
+dir <- "figure"
+dir.create(dir, showWarnings = F)
 
 # 绘制nCount_RNA与percent.mt的关系图
 seurat[["percent.mt"]] <- PercentageFeatureSet(seurat, pattern = "^MT-")
@@ -11,7 +13,7 @@ for (sample in unique(seurat$Sample)) {
 }
 p <- wrap_plots(p_list, nrow = round(root))
 p
-ggsave(plot = p, filename = "nCount_mt.pdf", height = 5 * size, width = 4 * size)
+ggsave(plot = p, filename = "figure/nCount_mt.pdf", height = 5 * size, width = 4 * size)
 
 # 绘制nCount_RNA与nFeature_RNA的关系图
 p_list <- list()
@@ -23,3 +25,6 @@ for (sample in unique(seurat$Sample)) {
 p <- wrap_plots(p_list, nrow = round(root))
 p
 ggsave(plot = p, filename = "nCount_nFeature.pdf", height = 4 * size, width = 4 * size)
+
+p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percent.mt"), layer = "counts", ncol = 1); p
+ggsave(plot = p, filename = paste0(dir, "figure/nCount_nFeature_mt.pdf"), width = 0.6 * length(unique(seurat$Sample)), height = 20)
