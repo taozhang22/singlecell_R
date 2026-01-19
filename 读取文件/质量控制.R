@@ -26,5 +26,6 @@ p <- wrap_plots(p_list, nrow = round(root))
 p
 ggsave(plot = p, filename = "nCount_nFeature.pdf", height = 4 * size, width = 4 * size)
 
+# 绘制质量控制的小提琴图("nCount_RNA", "nFeature_RNA", "percent.mt")
 p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percent.mt"), layer = "counts", ncol = 1); p
 ggsave(plot = p, filename = paste0(dir, "figure/nCount_nFeature_mt.pdf"), width = 0.6 * length(unique(seurat$Sample)), height = 20)
