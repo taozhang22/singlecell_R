@@ -3,7 +3,7 @@ seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
 seurat <- ScaleData(seurat)
 seurat <- RunPCA(seurat)
-p <- ElbowPlot(object = seurat, ndims = 50)
+p <- ElbowPlot(object = seurat, ndims = 50); p
 ggsave(plot = p, filename =paste0(dir, "/去除批次效应_肘状图.pdf"), width = 20, height = 20, units = "cm")
 seurat <- IntegrateLayers(object = seurat, method = CCAIntegration, orig.reduction = "pca", new.reduction = "integrated.cca", verbose = T)
 
