@@ -9,8 +9,7 @@ for (sample in unique(seurat$Sample)) {
   p <- FeatureScatter(seu, feature1 = "nCount_RNA", feature2 = "percent.mt") + RotatedAxis() + NoLegend() + labs(subtitle = sample)
   p_list[[sample]] <- p
 }
-p <- wrap_plots(p_list, nrow = round(root))
-p
+p <- wrap_plots(p_list, nrow = round(root)); p
 ggsave(plot = p, filename = "nCount_mt.pdf", height = 5 * root, width = 4 * root)
 
 # 绘制nCount_RNA与nFeature_RNA的关系图
@@ -20,8 +19,7 @@ for (sample in unique(seurat$Sample)) {
   p <- FeatureScatter(seu, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") + RotatedAxis() + NoLegend() + labs(subtitle = sample)
   p_list[[sample]] <- p
 }
-p <- wrap_plots(p_list, nrow = round(root))
-p
+p <- wrap_plots(p_list, nrow = round(root)); p
 ggsave(plot = p, filename = "nCount_nFeature.pdf", height = 4 * root, width = 4 * root)
 
 # 绘制质量控制的小提琴图("nCount_RNA", "nFeature_RNA", "percent.mt")
