@@ -8,3 +8,4 @@ ggsave(plot = p, filename = paste0(dir, "/质量控制_nCount_mt_nFeature.pdf"),
 p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percent.mt"), layer = "counts", ncol = 1); p
 ggsave(plot = p, filename = paste0(dir, "/质量控制_nCount_nFeature_mt.pdf"), width = 0.6 * length(unique(seurat$Sample)), height = 20)
 seurat <- subset(seurat, subset = percent.mt < 20) # 根据情况修改质量控制的条件
+qs_save(seurat, paste0(dir, "qc.qs2"))
