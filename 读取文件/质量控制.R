@@ -29,7 +29,6 @@ p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percen
 ggsave(plot = p, filename = "nCount_nFeature_mt.pdf", width = 0.6 * length(unique(seurat$Sample)), height = 20)
 
 # 查看每个样本的细胞的数量
-# 1) 统计并转成数据框
 df <- table(seurat$Sample)
 df <- data.frame(Sample = names(tab), CellCount = as.integer(tab), row.names = NULL)
 ggplot(df, aes(x = reorder(Sample, CellCount), y = CellCount)) +
