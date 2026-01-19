@@ -29,3 +29,4 @@ seurat <- lapply((seurat), function(seu) {
 seurat <- merge(seurat[[1]], seurat[-1])
 seurat <- subset(seurat, doublet.class == "Singlet")
 seurat <- DietSeurat(seurat, assays = "RNA", layers = "counts") 
+qs_save(seurat, paste0(dir, "remove_doublets.qs2"))
