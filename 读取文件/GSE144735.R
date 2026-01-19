@@ -26,4 +26,5 @@ table(rownames(metadata) == names(seurat))
 
 # 创建seurat对象
 seurat <- CreateSeuratObject(counts = seurat, project = "filename_out", min.cells = 0, min.features = 0, meta.data = metadata)
+seurat <- SplitObject(object = seurat, split.by = "Sample")
 qs_save(seurat, paste0(filename_out, ".qs2"))
