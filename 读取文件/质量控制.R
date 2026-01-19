@@ -30,6 +30,6 @@ ggsave(plot = p, filename = "nCount_nFeature_mt.pdf", width = 0.6 * length(uniqu
 
 # 查看每个样本的细胞的数量
 df <- table(seurat$Sample)
-df <- data.frame(Sample = names(tab), CellCount = as.integer(tab), row.names = NULL)
+df <- data.frame(Sample = names(df), CellCount = as.integer(df), row.names = NULL)
 ggplot(df, aes(x = reorder(Sample, CellCount), y = CellCount)) +
   geom_col()
