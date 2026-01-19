@@ -1,3 +1,4 @@
+# 质量控制----------------------------------------------------------------------
 seurat[["percent.mt"]] <- PercentageFeatureSet(seurat, pattern = "^MT-")
 p1 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "percent.mt")
 p2 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
