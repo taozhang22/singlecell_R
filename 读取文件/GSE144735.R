@@ -25,5 +25,5 @@ metadata <- metadata[colnames(seurat), ]
 table(rownames(metadata) == names(seurat))
 
 # 创建seurat对象
-seurat <- CreateSeuratObject(counts = seurat, project = "filename_out", min.cells = 3, min.features = 100, meta.data = metadata)
+seurat <- CreateSeuratObject(counts = seurat, project = "filename_out", min.cells = 0, min.features = 0, meta.data = metadata)
 qs_save(seurat, paste0(filename_out, ".qs2"))
