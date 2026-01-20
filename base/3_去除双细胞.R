@@ -1,4 +1,5 @@
 # 去除双细胞--------------------------------------------------------------------
+seurat <- SplitObject(seurat, split.by = "Sample")
 seurat <- lapply((seurat), function(seu) {
   seu <- NormalizeData(seu)
   seu <- FindVariableFeatures(seu, nfeatures = 3000)
