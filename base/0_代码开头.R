@@ -8,6 +8,7 @@ library(tidyverse)
 library(qs2)
 library(Seurat)
 library(patchwork)
+library(DoubletFinder)
 setwd("D:/research/bioinformatics/singlecell/R/practice/") #根据情况修改工作路径
 
 dir <- "result/base" # 根据情况修改文件夹的名字
@@ -22,6 +23,7 @@ library(tidyverse)
 library(qs2)
 library(Seurat)
 library(patchwork)
+library(DoubletFinder)
 setwd("D:/research/bioinformatics/singlecell/R/practice/") #根据情况修改工作路径
 
 dir <- "result/base" # 根据情况修改文件夹的名字
