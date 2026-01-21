@@ -14,3 +14,13 @@ classical.markers <- c(
   "CNN1", "TAGLN", "DES",                        # Smooth muscle cell
   "CD3D", "CD3E", "KLRB1"                        # T_NK
 )
+
+# 绘制气泡图
+for(res in seq(0.1, 1.2, by = 0.1)) {
+  p <- DotPlot(seurat, features = classical.markers, group.by = paste0("RNA_snn_res.", res)) + RotatedAxis()
+  ggsave(plot = p, filename =paste0(dir, "/celltype_annotation_dotplot_", res, ".pdf"), width = 20, height = 0.5 * length(unique(seurat[[paste0("RNA_snn_res.", res)]])), units = "cm")
+}
+
+# 细胞注释阶段用到的全局变量，根据研究的实际情况进行修改
+my_res = 0.3
+
