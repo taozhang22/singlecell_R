@@ -1,4 +1,4 @@
-rm(list = ls()); gc()
+rm(list = ls())
 library(data.table)
 library(tidyverse)
 library(qs2)
