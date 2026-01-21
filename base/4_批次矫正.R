@@ -1,9 +1,10 @@
-
 ###########################################################################################
 # Rstudio版本
 ###########################################################################################
 # 去除批次效应------------------------------------------------------------------
 # CCAIntegration
+res_list <- seq(0.1, 1.2, by = 0.1)
+
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
 seurat <- ScaleData(seurat)
@@ -22,12 +23,14 @@ p <- DimPlot(seurat, group.by = "Sample")
 ggsave(plot = p, filename =paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 20, units = "cm") # 保存批次矫正后的umap图
 
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
-seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
-p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
+seurat <- FindClusters(seurat, resolution = res_list)
+p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", res_list), ncol = 4)
 ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 15, units = "cm") # 注释前的多张umpa图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
 # HarmonyIntegration
+res_list <- seq(0.1, 1.2, by = 0.1)
+
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
 seurat <- ScaleData(seurat)
@@ -46,8 +49,8 @@ p <- DimPlot(seurat, group.by = "Sample")
 ggsave(plot = p, filename =paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 20, units = "cm") # 保存批次矫正后的umap图
 
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
-seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
-p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
+seurat <- FindClusters(seurat, resolution = res_list)
+p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", res_list), ncol = 4)
 ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 15, units = "cm") # 注释前的多张umpa图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
@@ -55,6 +58,8 @@ qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 # vscode版本
 ###########################################################################################
 # CCAIntegration
+res_list <- seq(0.1, 1.2, by = 0.1)
+
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
 seurat <- ScaleData(seurat)
@@ -73,31 +78,33 @@ p <- DimPlot(seurat, group.by = "Sample")
 options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 批次矫正后的umap图
 
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
-seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
-p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
+seurat <- FindClusters(seurat, resolution = res_list)
+p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", res_list), ncol = 4)
 options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 注释前的多张umpa图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
 # HarmonyIntegration
+res_list <- seq(0.1, 1.2, by = 0.1)
+
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
 seurat <- ScaleData(seurat)
 seurat <- RunPCA(seurat)
-p <- ElbowPlot(object = seurat, ndims = 50); p
-ggsave(plot = p, filename =paste0(dir, "/batch_correction_elbowplot.pdf"), width = 20, height = 20, units = "cm") # 保存肘状图
+p <- ElbowPlot(object = seurat, ndims = 50) # 肘状图
+options(repr.plot.width = 20, repr.plot.height = 20, repr.plot.res = 300); p
 seurat <- RunUMAP(seurat, dims = 1:50, reduction = "pca")
-p <- DimPlot(seurat, group.by = "Sample") 
-options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 保存批次矫正前的umap图
+p <- DimPlot(seurat, group.by = "Sample")
+options(repr.plot.width = 20, repr.plot.height = 20, repr.plot.res = 300); p # 批次矫正前的umap图
 
 seurat <- IntegrateLayers(object = seurat, method = HarmonyIntegration, orig.reduction = "pca", new.reduction = "integrated.cca", verbose = T) # 批次矫正
 
 seurat[["RNA"]] <- JoinLayers(seurat[["RNA"]])
 seurat <- RunUMAP(seurat, dims = 1:50, reduction = "integrated.cca")
-p <- DimPlot(seurat, group.by = "Sample") 
-options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 保存批次矫正后的umap图
+p <- DimPlot(seurat, group.by = "Sample")
+options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 批次矫正后的umap图
 
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
-seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
-p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
-options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 保存批次矫正后的umap图
+seurat <- FindClusters(seurat, resolution = res_list)
+p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", res_list), ncol = 4)
+options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # 注释前的多张umpa图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
