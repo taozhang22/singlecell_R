@@ -1,4 +1,5 @@
 # 去除双细胞--------------------------------------------------------------------
+options(repr.plot.width = 5, repr.plot.height = 5, repr.plot.res = 300)
 seurat <- SplitObject(seurat, split.by = "Sample")
 seurat <- lapply((seurat), function(seu) {
   seu <- NormalizeData(seu)
