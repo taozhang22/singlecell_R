@@ -74,8 +74,8 @@ ggsave(plot = p, filename =paste0(dir, "/batch_correction_after_umap.pdf"), widt
 
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
 seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
-p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1, by = 0.1)), ncol = 4)
-ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 20, units = "cm") # 保存批次矫正后的umap图
+p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
+ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 15, units = "cm") # 保存批次矫正后的umap图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
 # HarmonyIntegration
@@ -99,5 +99,5 @@ ggsave(plot = p, filename =paste0(dir, "/batch_correction_after_umap.pdf"), widt
 seurat <- FindNeighbors(object = seurat, reduction = "integrated.cca", dims = 1:50)
 seurat <- FindClusters(seurat, resolution = seq(0.1, 1.2, by = 0.1))
 p <- DimPlot(seurat, group.by = paste0("integrated.cca_snn_res.", seq(0.1, 1.2, by = 0.1)), ncol = 4)
-ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 20, units = "cm") # 保存批次矫正后的umap图
+ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), width = 20, height = 15, units = "cm") # 保存批次矫正后的umap图
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
