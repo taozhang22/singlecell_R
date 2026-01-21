@@ -1,9 +1,9 @@
 ###########################################################################################
 # Rstudio版本
 ###########################################################################################
-# 去除批次效应------------------------------------------------------------------
 # CCAIntegration
-res_list <- seq(0.1, 1.2, by = 0.1)
+# 去除批次效应------------------------------------------------------------------
+res_list <- seq(0.1, 1.2, by = 0.1) # 根据情况修改这个参数
 
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
@@ -29,7 +29,8 @@ ggsave(plot = p, filename = paste0(dir, "/batch_correction_after_umap.pdf"), wid
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
 # HarmonyIntegration
-res_list <- seq(0.1, 1.2, by = 0.1)
+# 去除批次效应------------------------------------------------------------------
+res_list <- seq(0.1, 1.2, by = 0.1) # 根据情况修改这个参数
 
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
@@ -58,7 +59,7 @@ qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 # vscode版本
 ###########################################################################################
 # CCAIntegration
-res_list <- seq(0.1, 1.2, by = 0.1)
+res_list <- seq(0.1, 1.2, by = 0.1) # 根据情况修改这个参数
 
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
@@ -84,7 +85,7 @@ options(repr.plot.width = 20, repr.plot.height = 15, repr.plot.res = 300); p # �
 qs_save(seurat, paste0(dir, "batch_correction.qs2"))
 
 # HarmonyIntegration
-res_list <- seq(0.1, 1.2, by = 0.1)
+res_list <- seq(0.1, 1.2, by = 0.1) # 根据情况修改这个参数
 
 seurat <- NormalizeData(seurat)
 seurat <- FindVariableFeatures(seurat, nfeatures = 3000)
