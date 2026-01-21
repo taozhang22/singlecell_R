@@ -1,4 +1,5 @@
 # 注释--------------------------------------------------------------------------
+# 根据疾病对marker基因进行修改
 classical.markers <- c(
   "CD79A", "MS4A1", "BANK1",                     # B cell
   "PLVAP", "VWF",                                # Endothelial
