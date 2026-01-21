@@ -12,17 +12,3 @@ p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percen
 ggsave(plot = p, filename = paste0(dir, "/qc_nCount_nFeature_mt.pdf"), width = 0.6 * length(unique(seurat$Sample)), height = 20)
 seurat <- subset(seurat, subset = percent.mt < 20) # 根据情况修改质量控制的条件
 qs_save(seurat, paste0(dir, "qc.qs2"))
-
-###########################################################################################
-# vscode版本
-###########################################################################################
-seurat[["percent.mt"]] <- PercentageFeatureSet(seurat, pattern = "^MT-")
-p1 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "percent.mt") + NoLegend()
-p2 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") + NoLegend()
-options(repr.plot.width = 12, repr.plot.height = 5, repr.plot.res = 300)
-p <- p1 + p2; p
-
-p <- VlnPlot(object = seurat, features = c("nCount_RNA", "nFeature_RNA", "percent.mt"), layer = "counts", ncol = 1)
-options(repr.plot.width = 0.6 * length(unique(seurat$Sample)), repr.plot.height = 20, repr.plot.res = 150); p
-seurat <- subset(seurat, subset = percent.mt < 20) # 根据情况修改质量控制的条件
-qs_save(seurat, paste0(dir, "qc.qs2"))
